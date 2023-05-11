@@ -1,3 +1,4 @@
+import CatClicker from "components/CatClicker";
 import React from "react";
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 
@@ -16,12 +17,16 @@ const HelloWorld: React.FC = () => (
                         <li>
                             <Link to="/users">Users</Link>
                         </li>
+                        <li>
+                            <Link to="/catclicker">CatClicker</Link>
+                        </li>
                     </ul>
                 </nav>
             </div>
             <Routes>
                 <Route path="/about" element={<About />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/catclicker" element={<CatClicker />} />
                 <Route path="/" element={<Home />} />
             </Routes>
         </Router>
