@@ -1,5 +1,8 @@
 import path from "path";
-import webpack, {Configuration} from "webpack";
+import type {Configuration} from "webpack";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type {Configuration as DevServerConfiguration} from "webpack-dev-server";
+import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
@@ -14,7 +17,8 @@ const webpackConfig = (env: {production: string; development: string}): Configur
     },
     output: {
         path: path.join(__dirname, "/dist"),
-        filename: "build.js"
+        filename: "build.js",
+        publicPath: "/"
     },
     module: {
         rules: [
@@ -27,6 +31,9 @@ const webpackConfig = (env: {production: string; development: string}): Configur
                 exclude: /dist/
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true
     },
     plugins: [
         new HtmlWebpackPlugin({

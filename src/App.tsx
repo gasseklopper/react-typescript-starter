@@ -1,5 +1,6 @@
+import CatClicker from "components/CatClicker";
 import * as React from "react";
-import {Routes, Route, Outlet, Link} from "react-router-dom";
+import {Routes, Route, Outlet, Link, BrowserRouter} from "react-router-dom";
 
 export default function App() {
     return (
@@ -14,18 +15,21 @@ export default function App() {
             {/* Routes nest inside one another. Nested route paths build upon
             parent route paths, and nested route elements render inside
             parent route elements. See the note about <Outlet> below. */}
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path="about" element={<About />} />
-                    <Route path="dashboard" element={<Dashboard />} />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Layout />}>
+                        <Route index element={<Home />} />
+                        <Route path="about" element={<About />} />
+                        <Route path="dashboard" element={<Dashboard />} />
+                        <Route path="catclicker" element={<CatClicker />} />
 
-                    {/* Using path="*"" means "match anything", so this route
+                        {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}
-                    <Route path="*" element={<NoMatch />} />
-                </Route>
-            </Routes>
+                        <Route path="*" element={<NoMatch />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }
@@ -45,6 +49,9 @@ function Layout() {
                     </li>
                     <li>
                         <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                    <li>
+                        <Link to="/catclicker">CatClicker</Link>
                     </li>
                     <li>
                         <Link to="/nothing-here">Nothing Here</Link>
